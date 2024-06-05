@@ -1,0 +1,15 @@
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:FinancieraAPP.Views"
+            x:Class="FinancieraAPP.Views.PrincipalPage">
+    <FlyoutPage.Flyout>
+        <views:MenuPage x:Name="flyoutPage" />
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <views:TipoDocumentoPage />
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>
