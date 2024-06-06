@@ -4,10 +4,12 @@
              xmlns:views="clr-namespace:FinancieraAPP.Views"
              xmlns:vm="clr-namespace:FinancieraAPP.ViewModels"
              x:Class="FinancieraAPP.Views.TipoDocumentoPage"
-             BindingContext="vm.TipoDocumentoViewModel"
              Padding="0,40,0,0"
              IconImageSource="hamburger.png"
              Title="Tipos de Documentos">
+    <ContentPage.BindingContext>
+        <vm:TipoDocumentoViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Nuevo" Command="{Binding AddTipoDocumento}">
             <ToolbarItem.IconImageSource>

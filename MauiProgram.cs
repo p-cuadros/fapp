@@ -17,10 +17,11 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
-		builder.Services.AddSingleton<IRestService, RestService>();
-		builder.Services.AddSingleton<ITipoDocumentoService, TipoDocumentoService>();
-		builder.Services.AddSingleton<TipoDocumentoPage>();
+		//builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
+		//builder.Services.AddSingleton<IRestService, RestService>();
+		//builder.Services.AddSingleton<ITipoDocumentoService, TipoDocumentoService>();
+		//builder.Services.AddSingleton<TipoDocumentoPage>();
+		//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5065") });
 
 #if DEBUG
 		builder.Logging.AddDebug();
