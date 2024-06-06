@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FinancieraAPP.Services;
+using FinancieraAPP.Views;
+using Microsoft.Extensions.Logging;
 
 namespace FinancieraAPP;
 
@@ -14,6 +16,11 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
+		builder.Services.AddSingleton<IRestService, RestService>();
+		builder.Services.AddSingleton<ITipoDocumentoService, TipoDocumentoService>();
+		builder.Services.AddSingleton<TipoDocumentoPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

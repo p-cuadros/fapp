@@ -6,41 +6,62 @@
              Padding="0,40,0,0"
              IconImageSource="hamburger.png"
              Title="Tipos de Documentos">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Command="{Binding AddTipoDocumento}">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="Android, WinUI" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>             
     <ScrollView>
-        <ListView x:Name="TiposListView"
-                Margin="20"
-                Header="Tipos de Documentos"
-                ItemSelected="OnProductListItemSelected">
-            <ListView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid ColumnSpacing="10" RowSpacing="10" HorizontalOptions="FillAndExpand">  
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="ID"/>
-                        <Label Text="Descripcion" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>
-                    </Grid>  
-                </DataTemplate>
-            </ListView.HeaderTemplate>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Margin="0" Spacing="50" Orientation="Horizontal" 
-                            HorizontalOptions="FillAndExpand">
-                            <StackLayout Margin="0" Orientation="Vertical" 
-                                HorizontalOptions="Start">
-                                <Label Text="{Binding AccountNumber}" 
-                                    VerticalOptions="Start" />
-                                <Label Text="{Binding AccountType}" 
-                                    VerticalOptions="End" />
-                            </StackLayout>
-                            <Label Margin="0" Text="{Binding Balance}" 
-                                HorizontalOptions="EndAndExpand" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>    
+        <StackLayout Margin="5" Spacing="10" Orientation="Vertical"> 
+            <CollectionView x:Name="TiposListView"
+                    Margin="10"
+                    ItemsSource="{Binding Tipos}" 
+                    SelectionMode="Single"
+                    SelectedItem="{Binding Seleccion}"
+                    >
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="auto,*" Padding="10" ColumnSpacing="10">
+                        <Label Text="ID" Grid.Column="0"/>
+                        <Label Text="Descripcion" Grid.Column="1"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="auto,*" Padding="10" ColumnSpacing="10">
+                            <Label Text="{Binding ID}" Grid.Column="0"/>
+                            <Label Text="{Binding Descripcion}" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView> 
+            <Grid ColumnDefinitions="auto,*" RowDefinitions="*,*,*" Margin="5">
+                <Label Text="ID" Grid.Column="0" Grid.Row="0" />
+                <Label Text="Descripcion" Grid.Column="0" Grid.Row="1"/>
+                <Entry Grid.Column="1" Grid.Row="0" IsEnabled="false"
+                    Text="{Binding Seleccion.ID}" />
+                <Entry Grid.Column="1" Grid.Row="1" IsEnabled="{Binding Edicion}"
+                    MaxLength="30"  Placeholder="Descripcion"
+                    Text="{Binding Seleccion.Descripcion}" />
+                <Grid Grid.Row="3" Grid.ColumnSpan="2" ColumnDefinitions="*,*" >
+                    <Button Grid.Column="0"
+                        x:Name="EditBtn"
+                        Text="Editar"
+                        SemanticProperties.Hint="Edita el tipo de documento"
+                        Command="{Binding EditCommand}"
+                        HorizontalOptions="Center" />                
+                    <Button Grid.Column="1"
+                        x:Name="SaveBtn"
+                        Text="Guardar"
+                        IsEnabled="{Binding edicion}"
+                        SemanticProperties.Hint="Guardar el tipo de documento"
+                        Command="{Binding SaveCommand}"
+                        HorizontalOptions="Center" />                
+                </Grid>    
+            </Grid>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
